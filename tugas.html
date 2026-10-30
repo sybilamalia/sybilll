@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <title>Seleksi Usia Pengunjung</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <style>
+  html {
+  min-height: 100%;
+      background: linear-gradient(to right, #37050b, #d67396) fixed;
+  }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 16px;
+    }
+
+    .form-box {
+      background: #cf2424;
+      border: 2px solid #08262e;
+      border-radius: 6px;
+      padding: 24px;
+      width: 100%;
+      max-width: 360px;
+    }
+    h2 { margin: 0 0 16px; font-size: 20px; }
+    .baris { display: flex; align-items: center; margin-bottom: 12px; }
+    .baris label { width: 70px; font-weight: bold; }
+    .baris input {
+      flex: 1;
+      padding: 8px;
+      border: 2px solid #c0392b;
+      border-radius: 4px;
+      font-size: 15px;
+    }
+    .tombol { display: flex; gap: 10px; margin-top: 8px; }
+    button {
+      padding: 8px 18px;
+      border: 2px solid #333;
+      background: #ddd;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover { background: #ccc; }
+    button:focus-visible { outline: 3px solid #2d6cdf; }
+  </style>
+</head>
+<body>
+
+  <div class="form-box">
+    <h2>Registrasi Pengunjung</h2>
+
+    <div class="baris">
+      <label for="nama">Nama</label>
+      <input type="text" id="nama">
+    </div>
+    <div class="baris">
+      <label for="usia">Usia</label>
+      <input type="number" id="usia" min="0">
+    </div>
+
+    <div class="tombol">
+      <button type="button" id="btnProses">PROSES</button>
+      <button type="button" id="btnClear">CLEAR</button>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+
+      // Tombol PROSES: cek usia lalu tampilkan dialog alert
+      $("#btnProses").click(function () {
+        var nama = $("#nama").val().trim();
+        var usia = parseInt($("#usia").val());
+
+        if (nama === "" || isNaN(usia)) {
+          alert("Nama dan usia harus diisi!");
+          return;
+        }
+
+        if (usia >= 27) {
+          alert("HELLO, " + nama.toUpperCase() + "\nANDA BOLEH MASUK");
+        } else {
+          alert("ANDA TIDAK BOLEH MASUK");
+        }
+      });
+
+      // Tombol CLEAR: hapus isi textfield nama dan usia
+      $("#btnClear").click(function () {
+        $("#nama").val("");
+        $("#usia").val("");
+        $("#nama").focus();
+      });
+
+    });
+  </script>
+
+</body>
+</html>
